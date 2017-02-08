@@ -1,3 +1,4 @@
+package hoonigan;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -6,6 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.*;
+import java.util.Map;
+import java.util.Set;
+import java.util.HashMap;
+import java.util.Iterator;
 
 /** Parser
  * 
@@ -24,7 +29,8 @@ public class Parser {
 	private Gson gson;
 	private BufferedReader br;
 	private FileInfo fInfo;
-	private List<Library_Items> libraryList;	//replace with HashMap (?)
+	private HashMap<String, Library_Items> libraryMap;
+//	private List<Library_Items> libraryList;	//replace with HashMap (?)
 	
 	/**
 	 * 
@@ -34,22 +40,24 @@ public class Parser {
 		this.gson = new Gson();
 		this.br = br;
 		this.fInfo = gson.fromJson(br, FileInfo.class);
-		this.libraryList = new ArrayList<Library_Items>();
+		this.libraryMap = new HashMap<String, Library_Items>();
+//		this.libraryList = new ArrayList<Library_Items>();
 	}
 	
 	//Getters and Setters for Data Structure that holds Sub-Classes of Library_Items
-	public List<Library_Items> getLibraryList(){
-		return this.libraryList;
+	public HashMap<String, Library_Items> getLibraryMap(){
+		return this.libraryMap;
 	}
 	
-	public void setLibraryList(List<Library_Items> li){
-		this.libraryList = li;
+	public void setLibraryMap(HashMap<String, Library_Items> li){
+		this.libraryMap = li;
 	}
 	
 	/** parse()
 	 * 		Parses a json file, and returns an ArrayList of Library_Items
 	 */
-	public List<Library_Items> parse(){	
+//	public List<Library_Items> parse(){	
+	public HashMap<String, Library_Items> parse(){	
 		/** Try the following:
 		 * 		- Our BufferedReader reads the Json file at FileReader(Location) 
 		 * 		- Our FileInfo array is == (whatever_the_reader_read, parsed_by_the_FileInfo_rules)
@@ -61,16 +69,17 @@ public class Parser {
 			if(fInfo != null){
 				for (HowToParseLibraryItems lItems : fInfo.getLibraryItems()){
 					if(lItems.getItemType().compareToIgnoreCase("DVD") == 0){
-						libraryList.add(new DVD(lItems.getItemName(), lItems.getItemType().toUpperCase(), lItems.getItemId()));
+						libraryMap.put(lItems.getItemId(), new DVD(lItems.getItemName(), 
+								lItems.getItemType().toUpperCase(), lItems.getItemId()));
 					}
 					else if(lItems.getItemType().compareToIgnoreCase("Magazine") == 0){
-						libraryList.add(new Magazine(lItems.getItemName(), lItems.getItemType().toUpperCase(), lItems.getItemId()));
+						libraryMap.put(lItems.getItemId(), new Magazine(lItems.getItemName(), lItems.getItemType().toUpperCase(), lItems.getItemId()));
 					}
 					else if(lItems.getItemType().compareToIgnoreCase("Book") == 0){
-						libraryList.add(new Book(lItems.getItemName(), lItems.getItemType().toUpperCase(), lItems.getItemId(), lItems.getItemAuthor()));
+						libraryMap.put(lItems.getItemId(), new Book(lItems.getItemName(), lItems.getItemType().toUpperCase(), lItems.getItemId(), lItems.getItemAuthor()));
 					}
 					else if(lItems.getItemType().compareToIgnoreCase("CD") == 0){
-						libraryList.add(new CD(lItems.getItemName(), lItems.getItemType().toUpperCase(), lItems.getItemId(), lItems.getItemArtist()));
+						libraryMap.put(lItems.getItemId(), new CD(lItems.getItemName(), lItems.getItemType().toUpperCase(), lItems.getItemId(), lItems.getItemArtist()));
 					}
 					else{
 						//If lItems.getItemType() is NOT one of CD/DVD/Magazine/Book, do nothing 
@@ -93,7 +102,7 @@ public class Parser {
 			}	
 		}
 		
-		return libraryList;
+		return libraryMap;
 	}
 
 }

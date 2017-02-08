@@ -1,3 +1,4 @@
+package hoonigan;
 import java.time.LocalDate;
 
 /** Magazine

@@ -1,28 +1,30 @@
+package hoonigan;
 import java.time.LocalDate;
 
-/** DVD
+/** Book
  *  
- * 	A simple DVD class--extended from Abstract Library_Items class
+ * 	A simple Book class--extended from Abstract Library_Items class
  * 
  */
-
-public class DVD extends Library_Items{
+public class Book extends Library_Items{
 	//Various fields
 	private String item_name;
 	private String item_type;
 	private String item_id;
+	private String item_author;
 	private String returnDate;
 	private boolean checkedOut;
 	
 	//Default constructor
-	DVD(){
+	Book(){
 	}
 	
 	//Constructor
-	DVD(String name, String type, String id){
+	Book(String name, String type, String id, String author){
 		item_name = name;
 		item_type = type;
 		item_id = id;
+		item_author = author;
 		checkedOut = false;
 		returnDate = LocalDate.now().toString();
 	}
@@ -52,6 +54,14 @@ public class DVD extends Library_Items{
 		this.item_id = item_id;
 	}
 	
+	public String getItem_author() {
+		return item_author;
+	}
+
+	public void setItem_author(String item_author) {
+		this.item_author = item_author;
+	}
+	
 	//Returns corresponding boolean value based on if Object is checked out
 	public boolean isCheckedOut(){
 		return checkedOut;
@@ -62,21 +72,21 @@ public class DVD extends Library_Items{
 		if(checkedOut == false)
 			checkedOut = true;
 	}
-	
+		
 	//Sets checkout value to false if checked out
 	public void checkIn(){
 		if(checkedOut == true)
 			checkedOut = false;
 	}
 	 
-	//Sets returnDate to currentDate + 7 days
+	//Sets returnDate to currentDate + 21 days
 	public String returnDate(){
-		return LocalDate.parse(returnDate).plusDays(7).toString();
+		return LocalDate.parse(returnDate).plusDays(21).toString();
 	}
 	
 	@Override
 	public String toString(){
-		String line = String.format("%s, %s, %s, %s, %b", item_name, item_type, item_id, returnDate, checkedOut);
+		String line = String.format("%s, %s, %s, %s, %s, %b", item_name, item_type, item_id, item_author, returnDate, checkedOut);
 		return line;
 	}
 }

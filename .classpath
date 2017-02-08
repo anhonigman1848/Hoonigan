@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="HelloWorld/|Main Code/|Outdated Files/Abstract Library_Items &amp; 4 Sub-Classes/|Outdated Files/JSONParser/src/|Outdated Files/Library_Items/" kind="src" path=""/>
+	<classpathentry kind="src" path="Main Code"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/ahon/git/Hoonigan/gson-2.6.2.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -1,3 +1,4 @@
+package hoonigan;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -22,7 +23,7 @@ public class UI_RoughDraft {
 			Scanner input = new Scanner(System.in);
 			
 			//Note: Json file loading should occur a level below this UI class [User should not see this]
-			BufferedReader br = new BufferedReader(new FileReader("C:/hello.json"));
+			BufferedReader br = new BufferedReader(new FileReader("hello.json"));
 			
 			//Note: Instantiating Parser should occur a level below this UI class [User should not see this]
 			Parser myParser = new Parser(br);

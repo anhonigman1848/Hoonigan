@@ -1,24 +1,31 @@
+package hoonigan;
 import java.time.LocalDate;
 
-public class Book extends Library_Items{
+/** CD
+ *  
+ * 	A simple CD class--extended from Abstract Library_Items class
+ * 
+ */
+
+public class CD extends Library_Items{
 	//Various fields
 	private String item_name;
 	private String item_type;
 	private String item_id;
-	private String item_author;
+	private String item_artist;
 	private String returnDate;
 	private boolean checkedOut;
 	
 	//Default constructor
-	Book(){
+	CD(){
 	}
 	
 	//Constructor
-	Book(String name, String type, String id, String author){
+	CD(String name, String type, String id, String artist){
 		item_name = name;
 		item_type = type;
 		item_id = id;
-		item_author = author;
+		item_artist = artist;
 		checkedOut = false;
 		returnDate = LocalDate.now().toString();
 	}
@@ -48,12 +55,12 @@ public class Book extends Library_Items{
 		this.item_id = item_id;
 	}
 	
-	public String getItem_author() {
-		return item_author;
+	public String getItem_artist() {
+		return item_artist;
 	}
 
-	public void setItem_author(String item_author) {
-		this.item_author = item_author;
+	public void setItem_artist(String item_artist) {
+		this.item_artist = item_artist;
 	}
 	
 	//Returns corresponding boolean value based on if Object is checked out
@@ -63,22 +70,24 @@ public class Book extends Library_Items{
 	
 	//Sets checkout value to true if checked out
 	public void checkOut(){
-		checkedOut = true;
+		if(checkedOut == false)
+			checkedOut = true;
 	}
 	
 	//Sets checkout value to false if checked out
 	public void checkIn(){
-		checkedOut = false;
+		if(checkedOut == true)
+			checkedOut = false;
 	}
 	 
-	//Sets returnDate to currentDate + 21 days
+	//Sets returnDate to currentDate + 7 days
 	public String returnDate(){
-		return LocalDate.parse(returnDate).plusDays(21).toString();
+		return LocalDate.parse(returnDate).plusDays(7).toString();
 	}
 	
 	@Override
 	public String toString(){
-		String line = String.format("%s, %s, %s, %s, %s, %b", item_name, item_type, item_id, item_author, returnDate, checkedOut);
+		String line = String.format("%s, %s, %s, %s, %s, %b", item_name, item_type, item_id, item_artist, returnDate, checkedOut);
 		return line;
 	}
 }

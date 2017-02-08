@@ -1,6 +1,13 @@
+package hoonigan;
 import java.time.LocalDate;
 
-public class Magazine extends Library_Items{
+/** DVD
+ *  
+ * 	A simple DVD class--extended from Abstract Library_Items class
+ * 
+ */
+
+public class DVD extends Library_Items{
 	//Various fields
 	private String item_name;
 	private String item_type;
@@ -9,11 +16,11 @@ public class Magazine extends Library_Items{
 	private boolean checkedOut;
 	
 	//Default constructor
-	Magazine(){
+	DVD(){
 	}
 	
 	//Constructor
-	Magazine(String name, String type, String id){
+	DVD(String name, String type, String id){
 		item_name = name;
 		item_type = type;
 		item_id = id;
@@ -53,12 +60,14 @@ public class Magazine extends Library_Items{
 	
 	//Sets checkout value to true if checked out
 	public void checkOut(){
-		checkedOut = true;
+		if(checkedOut == false)
+			checkedOut = true;
 	}
 	
 	//Sets checkout value to false if checked out
 	public void checkIn(){
-		checkedOut = false;
+		if(checkedOut == true)
+			checkedOut = false;
 	}
 	 
 	//Sets returnDate to currentDate + 7 days
