@@ -1,16 +1,9 @@
 package hoonigan;
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.*;
-import java.util.Map;
-import java.util.Set;
 import java.util.HashMap;
-import java.util.Iterator;
 
 /** Parser
  * 
@@ -73,13 +66,16 @@ public class Parser {
 								lItems.getItemType().toUpperCase(), lItems.getItemId()));
 					}
 					else if(lItems.getItemType().compareToIgnoreCase("Magazine") == 0){
-						libraryMap.put(lItems.getItemId(), new Magazine(lItems.getItemName(), lItems.getItemType().toUpperCase(), lItems.getItemId()));
+						libraryMap.put(lItems.getItemId(), new Magazine(lItems.getItemName(), 
+								lItems.getItemType().toUpperCase(), lItems.getItemId()));
 					}
 					else if(lItems.getItemType().compareToIgnoreCase("Book") == 0){
-						libraryMap.put(lItems.getItemId(), new Book(lItems.getItemName(), lItems.getItemType().toUpperCase(), lItems.getItemId(), lItems.getItemAuthor()));
+						libraryMap.put(lItems.getItemId(), new Book(lItems.getItemName(), 
+								lItems.getItemType().toUpperCase(), lItems.getItemId(), lItems.getItemAuthor()));
 					}
 					else if(lItems.getItemType().compareToIgnoreCase("CD") == 0){
-						libraryMap.put(lItems.getItemId(), new CD(lItems.getItemName(), lItems.getItemType().toUpperCase(), lItems.getItemId(), lItems.getItemArtist()));
+						libraryMap.put(lItems.getItemId(), new CD(lItems.getItemName(), 
+								lItems.getItemType().toUpperCase(), lItems.getItemId(), lItems.getItemArtist()));
 					}
 					else{
 						//If lItems.getItemType() is NOT one of CD/DVD/Magazine/Book, do nothing 

@@ -71,12 +71,14 @@ public class CD extends Library_Items{
 	//Sets checkout value to true if checked out
 	public void checkOut(){
 		if(checkedOut == false)
+			returnDate = LocalDate.now().plusDays(7).toString();
 			checkedOut = true;
 	}
 	
 	//Sets checkout value to false if checked out
 	public void checkIn(){
 		if(checkedOut == true)
+			returnDate = LocalDate.now().toString();
 			checkedOut = false;
 	}
 	 
@@ -85,9 +87,19 @@ public class CD extends Library_Items{
 		return LocalDate.parse(returnDate).plusDays(7).toString();
 	}
 	
+	public String status() {
+		if(this.isCheckedOut()) {
+			return "Checked out, due: " + this.returnDate;
+		}
+		else {
+			return "Available";
+		}
+	}
+	
 	@Override
 	public String toString(){
-		String line = String.format("%s, %s, %s, %s, %s, %b", item_name, item_type, item_id, item_artist, returnDate, checkedOut);
+		String line = String.format("ID: %s | TITLE: %s | TYPE: %s | ARTIST: %s | STATUS: %s", 
+				item_id, item_name, item_type, item_artist, status());
 		return line;
 	}
 }
